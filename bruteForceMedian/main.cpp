@@ -46,7 +46,7 @@ int main()
             }
             else
             {
-                if (A[j] < A[i])
+                if (A[j] == A[i])
                 {
                     numequal = numequal + 1;
                 }
