@@ -17,7 +17,7 @@ int main()
     //Open a file with filestream//
     ofstream inputData;
     inputData.open("inputData.csv");
-    while (inputData >> numberRead)
+    while (inputData > numberRead)
     {
         A.push_back(numberRead);
     }
