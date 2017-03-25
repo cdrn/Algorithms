@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -11,16 +13,15 @@ int main()
     int numsmaller;
     int numequal;
     vector<int> A;
-    int numberRead;
+    int numberRead = 0;
+    std::string inputDataString;
 
 
     //Open a file with filestream//
-    ofstream inputData;
+    std::ofstream inputData;
     inputData.open("inputData.csv");
-    while (inputData > numberRead)
-    {
-        A.push_back(numberRead);
-    }
+    inputData >> inputDataString;
+
     inputData.close();
     //
 
