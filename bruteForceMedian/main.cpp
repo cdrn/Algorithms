@@ -18,7 +18,7 @@ int main()
 
 
     //Open a file with filestream//
-    std::ofstream inputData;
+    std::ifstream inputData;
     inputData.open("inputData.csv");
     inputData >> inputDataString;
 
