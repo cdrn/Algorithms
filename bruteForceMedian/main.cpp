@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int main()
+int MedianBruteforce()
 {
 
     //Declare variables//
@@ -20,7 +20,20 @@ int main()
     //Open a file with filestream//
     std::ifstream inputData;
     inputData.open("inputData.csv");
-    inputData >> inputDataString;
+    //Check if stream opens, if not return error//
+    if(!inputData)
+
+    while(!inputData.eof())
+    {
+        //stream ifstreamchar to int//
+        int numberAsInteger;
+        inputData >> numberAsInteger;
+
+        //put in the vector//
+        A.push_back(numberAsInteger);
+
+
+    }
 
     inputData.close();
     //
@@ -62,5 +75,14 @@ int main()
 
 
     }
+}
+
+
+int main()
+{
+
+    MedianBruteforce();
 
 }
+
+
