@@ -14,7 +14,7 @@ int main()
     int numequal;
     vector<int> A;
     int numberRead = 0;
-    std::string inputDataString;
+    string inputDataString;
 
 
     //Open a file with filestream//
@@ -56,6 +56,7 @@ int main()
         if(numsmaller<K and K <=(numsmaller + numequal))
         {
             return A[i];
+            cout << A[i] << endl;
         }
 
 
