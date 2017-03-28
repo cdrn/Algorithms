@@ -12,40 +12,38 @@ int MedianBruteforce()
     //Declare variables//
     int numsmaller;
     int numequal;
+    int iterationCounter;
     vector<int> A;
-    int numberRead = 0;
     string inputDataString;
+
 
 
     //Open a file with filestream//
     ifstream inputData;
     inputData.open("inputData.csv");
     //Check if stream opens, if not return error//
-    if(inputData.is_open()){
-    cout << "stream opened" << endl;
+    if(inputData.is_open())
+    {
+        cout << "stream opened" << endl;
     }
 
     cout << inputData.gcount();
 
-    while(inputData.good())
+
+    for (string line; getline(inputData, line);)
     {
+
         //stream ifstreamchar to int//
-        char delimiter;
         int numberAsInteger;
-        inputData >> delimiter;
-        inputData >> numberAsInteger;
-
-
+        //stringstream the line to an integer/
+        istringstream(line) >> numberAsInteger;
         //put in the vector//
         A.push_back(numberAsInteger);
-        cout << A.size();
-        cout << "test";
+        //cout << A.size();
+        inputData.close();
+        }
 
-
-    }
-
-    inputData.close();
-
+    cout << A[0];
 
     int K = A.size()/2;
     int SizeOfArray = A.size();
@@ -72,13 +70,14 @@ int MedianBruteforce()
         if(numsmaller<K and K <=(numsmaller + numequal))
         {
             return A[i];
-            cout << A[i] << endl;
+            cout << "the median is " << A[i] << endl;
         }
 
 
 
     }
 }
+
 
 
 int main()
