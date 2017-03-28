@@ -18,30 +18,33 @@ int MedianBruteforce()
 
 
     //Open a file with filestream//
-    std::ifstream inputData;
+    ifstream inputData;
     inputData.open("inputData.csv");
     //Check if stream opens, if not return error//
-    if(!inputData)
+    if(inputData.is_open()){
+    cout << "stream opened" << endl;
+    }
 
-    while(!inputData.eof())
+    cout << inputData.gcount();
+
+    while(inputData.good())
     {
         //stream ifstreamchar to int//
+        char delimiter;
         int numberAsInteger;
+        inputData >> delimiter;
         inputData >> numberAsInteger;
+
 
         //put in the vector//
         A.push_back(numberAsInteger);
+        cout << A.size();
+        cout << "test";
 
 
     }
 
     inputData.close();
-    //
-
-
-
-    cout << "Hello world!" << endl;
-
 
 
     int K = A.size()/2;
