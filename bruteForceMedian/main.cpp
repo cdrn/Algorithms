@@ -6,17 +6,20 @@
 
 using namespace std;
 
+void populateCsv(){
+
+}
+
+
+//The method which reads in a CSV and executes the median bruteforce//
 int MedianBruteforce()
 {
-
     //Declare variables//
     int numsmaller;
     int numequal;
     int iterationCounter;
     vector<int> A;
     string inputDataString;
-
-
 
     //Open a file with filestream//
     ifstream inputData;
@@ -27,7 +30,7 @@ int MedianBruteforce()
         cout << "stream opened" << endl;
     }
 
-    cout << inputData.gcount();
+    cout <<"streamcount is: " <<  inputData.gcount() << "\n";
 
 
     for (string line; getline(inputData, line);)
@@ -39,14 +42,19 @@ int MedianBruteforce()
         istringstream(line) >> numberAsInteger;
         //put in the vector//
         A.push_back(numberAsInteger);
-        //cout << A.size();
-        inputData.close();
-        }
 
-    cout << A[0];
+    }
 
-    int K = A.size()/2;
+    cout << A[0] << "\n" << A[1] << "\n" << A[2] << "\n";
+
     int SizeOfArray = A.size();
+    int K = SizeOfArray/2;
+
+    if(SizeOfArray%2 == 1){
+        K++;
+    }
+
+    cout << A.size() << " " << K;
 
 
     for(int i = 0; i < (SizeOfArray-1); i++)
@@ -67,10 +75,15 @@ int MedianBruteforce()
                 }
             }
         }
-        if(numsmaller<K and K <=(numsmaller + numequal))
+        if(numsmaller < K and K <= (numsmaller + numequal))
         {
+
+            cout << "the median is " << A[i] << "\n";
             return A[i];
-            cout << "the median is " << A[i] << endl;
+        }
+        else
+        {
+            cout << "median not found \n";
         }
 
 
