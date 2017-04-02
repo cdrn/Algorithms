@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1490763625 source:/home/perseus_/Documents/BrutforceMedian/bruteForceMedian/main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<sstream>
+	<string>
+
