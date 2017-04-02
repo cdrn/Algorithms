@@ -10,8 +10,10 @@
 #include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
-void populateCsv(){
+void populateCsv()
+{
 
 }
 
@@ -50,12 +52,18 @@ int MedianBruteforce()
 
     }
 
-    cout << A[0] << "\n" << A[1] << "\n" << A[2] << "\n";
+    //cout << A[0] << "\n" << A[1] << "\n" << A[2] << "\n";
+
+    //Save time before algorithm run//
+    steady_clock::time_point t1 = steady_clock::now();
+
+
 
     int SizeOfArray = A.size();
     int K = SizeOfArray/2;
 
-    if(SizeOfArray%2 == 1){
+    if(SizeOfArray%2 == 1)
+    {
         K++;
     }
 
@@ -84,7 +92,17 @@ int MedianBruteforce()
         {
 
             cout << "the median is " << A[i] << "\n";
+
+            //save time after algorithm completion//
+            steady_clock::time_point t2 = steady_clock::now();
+            //cout t2-t1
+            duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+            cout << "It took me " << time_span.count() << " seconds." << "\n";
+
+            //return the median and TERMINATE//
             return A[i];
+
+            ;
         }
         else
         {
