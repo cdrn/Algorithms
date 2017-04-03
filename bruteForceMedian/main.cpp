@@ -15,6 +15,7 @@ using namespace std::chrono;
 void populateCsv()
 {
 
+
 }
 
 
@@ -61,30 +62,37 @@ int MedianBruteforce()
 
     int SizeOfArray = A.size();
     int K = SizeOfArray/2;
+    int operationsCounter = 0;
 
     if(SizeOfArray%2 == 1)
     {
         K++;
     }
 
-    cout << A.size() << " " << K;
+    cout << A.size() << " " << K << "\n";
 
 
     for(int i = 0; i < (SizeOfArray-1); i++)
     {
         numsmaller = 0;
         numequal = 0;
+        //operation counter//
+        operationsCounter++;
         for(int j = 0; j < (SizeOfArray-1); j++)
         {
             if(A[j] < A[i])
             {
                 numsmaller = numsmaller + 1;
+                //operation counter//
+                operationsCounter++;
             }
             else
             {
                 if (A[j] == A[i])
                 {
                     numequal = numequal + 1;
+                    //operation counter
+                    operationsCounter++;
                 }
             }
         }
@@ -92,6 +100,9 @@ int MedianBruteforce()
         {
 
             cout << "the median is " << A[i] << "\n";
+            cout << "the number of operations is " << operationsCounter << " with array size " << SizeOfArray << "\n";
+
+            //operation counter//
 
             //save time after algorithm completion//
             steady_clock::time_point t2 = steady_clock::now();
