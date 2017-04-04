@@ -12,6 +12,8 @@
 using namespace std;
 using namespace std::chrono;
 
+
+//simple method to populate a dummy csv
 void populateCsv(int numberOfValues)
 {
     ofstream outputData;
@@ -20,9 +22,12 @@ void populateCsv(int numberOfValues)
     srand(time(NULL));
     for(int i=0; i<numberOfValues-1; i++)
     {
-        outputData << rand()%100000 << ", ";
+        outputData << rand()%100 << "\r\n";
 
     }
+            outputData.close();
+
+
 
 
 
@@ -140,6 +145,7 @@ int MedianBruteforce()
 int main()
 {
 
+    populateCsv(100);
     MedianBruteforce();
 
 }
