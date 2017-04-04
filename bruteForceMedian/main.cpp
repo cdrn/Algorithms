@@ -12,8 +12,18 @@
 using namespace std;
 using namespace std::chrono;
 
-void populateCsv()
+void populateCsv(int numberOfValues)
 {
+    ofstream outputData;
+    outputData.open("inputData.csv");
+    //seed rand with time
+    srand(time(NULL));
+    for(int i=0; i<numberOfValues-1; i++)
+    {
+        outputData << rand()%100000 << ", ";
+
+    }
+
 
 
 }
