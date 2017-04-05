@@ -20,16 +20,13 @@ void populateCsv(int numberOfValues)
     outputData.open("inputData.csv");
     //seed rand with time
     srand(time(NULL));
-    for(int i=0; i<numberOfValues-1; i++)
+
+    for(int i=0; i<numberOfValues; i++)
     {
         outputData << rand()%100 << "\r\n";
 
     }
             outputData.close();
-
-
-
-
 
 }
 
@@ -91,23 +88,22 @@ int MedianBruteforce()
     {
         numsmaller = 0;
         numequal = 0;
-        //operation counter//
-        operationsCounter++;
         for(int j = 0; j < (SizeOfArray-1); j++)
         {
+
+                        //operation counter//
+                operationsCounter++;
             if(A[j] < A[i])
             {
                 numsmaller = numsmaller + 1;
-                //operation counter//
-                operationsCounter++;
+
             }
             else
             {
                 if (A[j] == A[i])
                 {
                     numequal = numequal + 1;
-                    //operation counter
-                    operationsCounter++;
+
                 }
             }
         }
@@ -145,7 +141,7 @@ int MedianBruteforce()
 int main()
 {
 
-    populateCsv(100);
+    populateCsv(11000000);
     MedianBruteforce();
 
 }
