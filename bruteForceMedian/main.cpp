@@ -4,13 +4,22 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <tuple>
 //system clock includes//
 #include <ctime>
 #include <ratio>
 #include <chrono>
 
+
 using namespace std;
 using namespace std::chrono;
+
+
+//GLOBAL VARIABLES//
+
+//declare a new type of vector to hold tuples
+typedef vector < tuple<int, int, float> > tuple_list;
+
 
 
 //simple method to populate a dummy csv
@@ -20,8 +29,8 @@ void populateCsv(int numberOfValues)
     outputData.open("inputData.csv");
     //seed srand using time in ms by getting it from sys clock//
     milliseconds ms = duration_cast< milliseconds >(
-    system_clock::now().time_since_epoch()
-    );
+                          system_clock::now().time_since_epoch()
+                      );
     //count ms and seed//
     srand(ms.count());
 
@@ -37,7 +46,7 @@ void populateCsv(int numberOfValues)
 
 
 //The method which reads in a CSV and executes the median bruteforce//
-int MedianBruteforce()
+tuple<int, int, float> MedianBruteforce()
 {
     //Declare variables//
     int numsmaller;
@@ -126,16 +135,11 @@ int MedianBruteforce()
             //cout t2-t1
             time_span = duration_cast<duration<double>>(t2 - t1);
             cout << "It took me " << time_span.count() << " seconds." << "\n";
-            //Export the results to Excel
-            ofstream runtimes;
-            runtimes.open("runtimes.csv", fstream::app);
-            runtimes << "\r\n" << SizeOfArray << "," << operationsCounter << "," << time_span.count();
-            runtimes.close();
 
             //return the median and TERMINATE//
-            return A[i];
+            return make_tuple(SizeOfArray, operationsCounter, time_span.count());
 
-            ;
+
         }
         else
         {
@@ -154,17 +158,53 @@ int MedianBruteforce()
 int main()
 {
     int numberOfValues = 0;
+    float cumulativeruntimes;
+    int cumulativeoperations;
+    int arraysize;
+    float meanruntimes;
+    int meanoperations;
+
+    tuple_list runtime_tuples;
+
+
+    //Very hacky code to run arraysizes a certain number of times and take an average.//
+    //could be made orthoganal in a method but who has the time//
+    //Just edit the condition to change the number of times to run//
 
     for(int i=0; i<100; i++)
     {
+        //increment arraysize and erase vector of results//
         numberOfValues = numberOfValues + 100;
+        runtime_tuples.clear();
 
-        for (int j=0; j<5; j++)
+        for(int j=0; j<5; j++)
         {
+
             populateCsv(numberOfValues);
-            MedianBruteforce();
+            runtime_tuples.emplace_back(MedianBruteforce());
 
         }
+
+        for(n : runtime_tuples){
+            arraysize = get<0>(n);
+            cumulativeoperations += get<1>(n);
+            cumulativeruntimes += get<2>(n);
+
+        }
+
+        meanoperations = cumulativeoperations/runtime_tuples.size();
+        meanruntimes = cumulativeruntimes/runtime_tuples.size();
+
+
+
+
+        //Export the results to Excel
+        ofstream runtimes;
+        runtimes.open("runtimes.csv", fstream::app);
+        runtimes << "\r\n" << arraysize << "," << meanoperations << "," << meanruntimes;
+        runtimes.close();
+        //reset our calculation counters
+        meanoperations, cumulativeoperations, meanruntimes, cumulativeruntimes = 0;
 
     }
 
