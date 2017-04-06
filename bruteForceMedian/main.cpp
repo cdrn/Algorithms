@@ -18,15 +18,20 @@ void populateCsv(int numberOfValues)
 {
     ofstream outputData;
     outputData.open("inputData.csv");
-    //seed rand with time
-    srand(time(NULL));
+    //seed srand using time in ms by getting it from sys clock//
+    milliseconds ms = duration_cast< milliseconds >(
+    system_clock::now().time_since_epoch()
+    );
+    //count ms and seed//
+    srand(ms.count());
 
     for(int i=0; i<numberOfValues; i++)
     {
+        //seed rand with time
         outputData << rand()%100 << "\r\n";
 
     }
-            outputData.close();
+    outputData.close();
 
 }
 
@@ -40,6 +45,7 @@ int MedianBruteforce()
     int iterationCounter;
     vector<int> A;
     string inputDataString;
+    duration<double> time_span;
 
     //Open a file with filestream//
     ifstream inputData;
@@ -91,8 +97,8 @@ int MedianBruteforce()
         for(int j = 0; j < (SizeOfArray-1); j++)
         {
 
-                        //operation counter//
-                operationsCounter++;
+            //operation counter//
+            operationsCounter++;
             if(A[j] < A[i])
             {
                 numsmaller = numsmaller + 1;
@@ -118,8 +124,13 @@ int MedianBruteforce()
             //save time after algorithm completion//
             steady_clock::time_point t2 = steady_clock::now();
             //cout t2-t1
-            duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+            time_span = duration_cast<duration<double>>(t2 - t1);
             cout << "It took me " << time_span.count() << " seconds." << "\n";
+            //Export the results to Excel
+            ofstream runtimes;
+            runtimes.open("runtimes.csv", fstream::app);
+            runtimes << "\r\n" << SizeOfArray << "," << operationsCounter << "," << time_span.count();
+            runtimes.close();
 
             //return the median and TERMINATE//
             return A[i];
@@ -134,15 +145,28 @@ int MedianBruteforce()
 
 
     }
+
+
 }
 
 
 
 int main()
 {
+    int numberOfValues = 0;
 
-    populateCsv(11000000);
-    MedianBruteforce();
+    for(int i=0; i<100; i++)
+    {
+        numberOfValues = numberOfValues + 100;
+
+        for (int j=0; j<5; j++)
+        {
+            populateCsv(numberOfValues);
+            MedianBruteforce();
+
+        }
+
+    }
 
 }
 
