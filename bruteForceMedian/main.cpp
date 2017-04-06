@@ -171,7 +171,7 @@ int main()
     //could be made orthoganal in a method but who has the time//
     //Just edit the condition to change the number of times to run//
 
-    for(int i=0; i<100; i++)
+    for(int i=0; i<1000; i++)
     {
         //increment arraysize and erase vector of results//
         numberOfValues = numberOfValues + 100;
@@ -194,11 +194,7 @@ int main()
 
         meanoperations = cumulativeoperations/runtime_tuples.size();
         meanruntimes = cumulativeruntimes/runtime_tuples.size();
-
-
-
-
-        //Export the results to Excel
+        //Export the results to Excel (using append)
         ofstream runtimes;
         runtimes.open("runtimes.csv", fstream::app);
         runtimes << "\r\n" << arraysize << "," << meanoperations << "," << meanruntimes;
