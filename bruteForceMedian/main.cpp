@@ -177,7 +177,7 @@ int main()
         numberOfValues = numberOfValues + 100;
         runtime_tuples.clear();
 
-        for(int j=0; j<5; j++)
+        for(int j=0; j<20; j++)
         {
 
             populateCsv(numberOfValues);
@@ -187,6 +187,7 @@ int main()
 
         for(n : runtime_tuples){
             arraysize = get<0>(n);
+
             cumulativeoperations += get<1>(n);
             cumulativeruntimes += get<2>(n);
 
