@@ -91,7 +91,7 @@ tuple<int, int, float> MedianBruteforce()
     int K = SizeOfArray/2;
     int operationsCounter = 0;
 
-    if(SizeOfArray%2 == 1)
+    if(SizeOfArray%2.0f == 1)
     {
         K++;
     }
