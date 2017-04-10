@@ -46,7 +46,7 @@ void populateCsv(int numberOfValues)
 
 
 //The method which reads in a CSV and executes the median bruteforce//
-tuple<int, int, float> MedianBruteforce()
+tuple<long, long, float> MedianBruteforce()
 {
     //Declare variables//
     int numsmaller;
@@ -91,7 +91,7 @@ tuple<int, int, float> MedianBruteforce()
     int K = SizeOfArray/2;
     int operationsCounter = 0;
 
-    if(SizeOfArray%2.0f == 1)
+    if(SizeOfArray%2 == 1)
     {
         K++;
     }
@@ -159,10 +159,10 @@ int main()
 {
     int numberOfValues = 0;
     float cumulativeruntimes;
-    int cumulativeoperations;
+    long cumulativeoperations;
     int arraysize;
     float meanruntimes;
-    int meanoperations;
+    long meanoperations;
 
     tuple_list runtime_tuples;
 
@@ -174,10 +174,10 @@ int main()
     for(int i=0; i<1000; i++)
     {
         //increment arraysize and erase vector of results//
-        numberOfValues = numberOfValues + 100;
+        numberOfValues = numberOfValues + 10;
         runtime_tuples.clear();
 
-        for(int j=0; j<20; j++)
+        for(int j=0; j<10; j++)
         {
 
             populateCsv(numberOfValues);
@@ -193,8 +193,8 @@ int main()
 
         }
 
-        meanoperations = cumulativeoperations/runtime_tuples.size();
-        meanruntimes = cumulativeruntimes/runtime_tuples.size();
+        meanoperations = cumulativeoperations/10;
+        meanruntimes = cumulativeruntimes/10;
         //Export the results to Excel (using append)
         ofstream runtimes;
         runtimes.open("runtimes.csv", fstream::app);
