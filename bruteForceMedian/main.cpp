@@ -146,8 +146,6 @@ tuple<long, long, float> MedianBruteforce()
             cout << "median not found \n";
         }
 
-
-
     }
 
 
@@ -167,43 +165,47 @@ int main()
     tuple_list runtime_tuples;
 
 
+    //PROVE THE ALGORITHM WORKS//
+    MedianBruteforce();
+
+
     //Very hacky code to run arraysizes a certain number of times and take an average.//
     //could be made orthoganal in a method but who has the time//
     //Just edit the condition to change the number of times to run//
 
-    for(int i=0; i<1000; i++)
-    {
-        //increment arraysize and erase vector of results//
-        numberOfValues = numberOfValues + 10;
-        runtime_tuples.clear();
-
-        for(int j=0; j<10; j++)
-        {
-
-            populateCsv(numberOfValues);
-            runtime_tuples.emplace_back(MedianBruteforce());
-
-        }
-
-        for(n : runtime_tuples){
-            arraysize = get<0>(n);
-
-            cumulativeoperations += get<1>(n);
-            cumulativeruntimes += get<2>(n);
-
-        }
-
-        meanoperations = cumulativeoperations/10;
-        meanruntimes = cumulativeruntimes/10;
-        //Export the results to Excel (using append)
-        ofstream runtimes;
-        runtimes.open("runtimes.csv", fstream::app);
-        runtimes << "\r\n" << arraysize << "," << meanoperations << "," << meanruntimes;
-        runtimes.close();
-        //reset our calculation counters
-        meanoperations, cumulativeoperations, meanruntimes, cumulativeruntimes = 0;
-
-    }
+//    for(int i=0; i<1000; i++)
+//    {
+//        //increment arraysize and erase vector of results//
+//        numberOfValues = numberOfValues + 10;
+//        runtime_tuples.clear();
+//
+//        for(int j=0; j<10; j++)
+//        {
+//
+//            populateCsv(numberOfValues);
+//            runtime_tuples.emplace_back(MedianBruteforce());
+//
+//        }
+//
+//        for(n : runtime_tuples){
+//            arraysize = get<0>(n);
+//
+//            cumulativeoperations += get<1>(n);
+//            cumulativeruntimes += get<2>(n);
+//
+//        }
+//
+//        meanoperations = cumulativeoperations/10;
+//        meanruntimes = cumulativeruntimes/10;
+//        //Export the results to Excel (using append)
+//        ofstream runtimes;
+//        runtimes.open("runtimes.csv", fstream::app);
+//        runtimes << "\r\n" << arraysize << "," << meanoperations << "," << meanruntimes;
+//        runtimes.close();
+//        //reset our calculation counters
+//        meanoperations, cumulativeoperations, meanruntimes, cumulativeruntimes = 0;
+//
+//    }
 
 }
 
