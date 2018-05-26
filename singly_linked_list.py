@@ -40,10 +40,10 @@ class LinkedList:
     # Pre: The value to add to the linked list
     # post: The value has been placed at the tail of the list
     if not self.get_first_node():  # If no node exists, make one
-      self.first_node = Node(val)
+      self.first_node = self.Node(val)
     else:  # else traverse to the final node and add
       node = self.__traverse()
-      node.next = Node(value)
+      node.next = self.Node(val)
 
   def contains(self, val):
     # Assess whether the linked list contains a given value
@@ -66,7 +66,8 @@ class LinkedList:
       node = node.next
     # Handle the case of the node to be deleted being the first node
     if node.get_val() == val:
-      if node == self.__traverse()
+      if node == self.__traverse():
+        None
 
 
 
