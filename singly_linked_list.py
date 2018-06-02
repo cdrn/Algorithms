@@ -67,6 +67,7 @@ class LinkedList:
     # Handle the case of the node to be deleted being the first node
     if node.get_val() == val:
       if node == self.__traverse():
+        # traverse until we get the second last node
         None
 
 
